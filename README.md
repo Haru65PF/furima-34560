@@ -48,7 +48,7 @@ has_many :item_records
 | ----------------- | ---------- | ---------------- |
 | name              | String     | null:false       |
 | info              | text       | null:false       |
-| category_id       | String     | null:false       |
+| category_id       | Integer    | null:false       |
 | condition_id      | Integer    | null:false       |
 | delivery_pay_id   | Integer    | null:false       |
 | delivery_place_id | Integer    | null:false       |
@@ -60,20 +60,21 @@ has_many :item_records
 belongs_to :user
 has_one :item_record
 
-## address テーブル
-| Column        | Type    | Option     |
-| ------------- | ------- | ---------- |
-| post_num      | String  | null:false |
-| prefecture_id | Integer | null:false |
-| city          | String  | null:false |
-| address       | String  | null:false |
-| building      | String  |            |
-| phone         | String  | null:false |
+## addresses テーブル
+| Column        | Type       | Option           |
+| ------------- | ---------- | ---------------- |
+| post_num      | String     | null:false       |
+| prefecture_id | Integer    | null:false       |
+| city          | String     | null:false       |
+| address       | String     | null:false       |
+| building      | String     |                  |
+| phone         | String     | null:false       |
+| item_record   | references | foreign_key:true |
 
 ### Association
 belongs_to item_record
 
-## item_record テーブル
+## item_records テーブル
 
 | Column  | Type       | Option           |
 | ------- | ---------- | ---------------- |
