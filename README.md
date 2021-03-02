@@ -44,17 +44,17 @@ has_many :item_records
 
 ## items テーブル
 
-| Column            | Type       | Option           |
-| ----------------- | ---------- | ---------------- |
-| name              | String     | null:false       |
-| info              | text       | null:false       |
-| category_id       | Integer    | null:false       |
-| condition_id      | Integer    | null:false       |
-| delivery_pay_id   | Integer    | null:false       |
-| delivery_place_id | Integer    | null:false       |
-| delivery_date_id  | Integer    | null:false       |
-| price             | Integer    | null:false       |
-| user              | references | foreign_key:true |
+| Column           | Type       | Option           |
+| ---------------- | ---------- | ---------------- |
+| name             | String     | null:false       |
+| info             | text       | null:false       |
+| category_id      | Integer    | null:false       |
+| condition_id     | Integer    | null:false       |
+| delivery_pay_id  | Integer    | null:false       |
+| prefecture_id    | Integer    | null:false       |
+| delivery_date_id | Integer    | null:false       |
+| price            | Integer    | null:false       |
+| user             | references | foreign_key:true |
 
 ### Association
 belongs_to :user
