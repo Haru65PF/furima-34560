@@ -22,3 +22,66 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# データベース設計
+
+## Users テーブル
+
+| Column             | Type   | Option                  |
+| ------------------ | ------ | ----------------------- |
+| nickname           | String | null:false              |
+| encrypted_password | String | null:false              |
+| email              | String | null:false, unique:true |
+| last_name          | String | null:false              |
+| first_name         | String | null:false              |
+| base_last_name     | String | null:false              |
+| base_first_name    | String | null:false              |
+| birth_date         | Date   | null:false              |
+
+### Association
+has_many :items
+has_many :item_records
+
+## items テーブル
+
+| Column           | Type       | Option           |
+| ---------------- | ---------- | ---------------- |
+| name             | String     | null:false       |
+| info             | Text       | null:false       |
+| category_id      | Integer    | null:false       |
+| condition_id     | Integer    | null:false       |
+| delivery_pay_id  | Integer    | null:false       |
+| prefecture_id    | Integer    | null:false       |
+| delivery_date_id | Integer    | null:false       |
+| price            | Integer    | null:false       |
+| user             | References | foreign_key:true |
+
+### Association
+belongs_to :user
+has_one :item_record
+
+## addresses テーブル
+| Column        | Type       | Option           |
+| ------------- | ---------- | ---------------- |
+| post_num      | String     | null:false       |
+| prefecture_id | Integer    | null:false       |
+| city          | String     | null:false       |
+| address       | String     | null:false       |
+| building      | String     |                  |
+| phone         | String     | null:false       |
+| item_record   | References | foreign_key:true |
+
+### Association
+belongs_to :item_record
+
+## item_records テーブル
+
+| Column  | Type       | Option           |
+| ------- | ---------- | ---------------- |
+| user    | References | foreign_key:true |
+| item    | References | foreign_key:true |
+
+### Association
+belongs_to :user
+belongs_to :item
+has_one :address
