@@ -27,53 +27,60 @@ Things you may want to cover:
 
 ## Users テーブル
 
-| Column          | Type    | Option     |
-| --------------- | ------- | ---------- |
-| nickname        | String  | null:false |
-| password        | String  | null:false |
-| email           | String  | null:false |
-| last-name       | String  | null:false |
-| first-name      | String  | null:false |
-| base-last-name  | String  | null:false |
-| base-first-name | String  | null:false |
-| birth-year      | Integer | null:false |
-| birth-month     | Integer | null:false |
-| birth-day       | Integer | null:false |
-
+| Column                | Type    | Option     |
+| --------------------- | ------- | ---------- |
+| nickname              | String  | null:false |
+| password              | String  | null:false |
+| password_confirmation | String  | null:false |
+| email                 | String  | null:false |
+| last_name             | String  | null:false |
+| first_name            | String  | null:false |
+| base_last_name        | String  | null:false |
+| base_first_name       | String  | null:false |
+| birth_date            | Integer | null:false |
 ### Association
 has_many :items
+has_one :iem_record
 
 ## items テーブル
 
-| Column         | Type       | Option     |
-| -------------- | ---------- | ---------- |
-| name           | String     | null:false |
-| info           | text       | null:false |
-| category       | String     | null:false |
-| condition      | String     | null:false |
-| delivery-pay   | String     | null:false |
-| delivery-place | String     | nul:false  |
-| delivery-date  | Integer    | null:false |
-| price          | Integer    | null:false |
-| user           | references |            |
+| Column            | Type       | Option           |
+| ----------------- | ---------- | ---------------- |
+| name              | String     | null:false       |
+| info              | text       | null:false       |
+| category_id       | String     | null:false       |
+| condition_id      | Integer    | null:false       |
+| delivery_pay_id   | Integer    | null:false       |
+| delivery_place_id | Integer    | null:false       |
+| delivery_date_id  | Integer    | null:false       |
+| price             | Integer    | null:false       |
+| user              | references | foreign_key:true |
 
 ### Association
 belongs_to :user
 has_one :pay
+has_one :item_record
 
 ## payテーブル
-| Column        | Type     | Option     |
-| ------------- | -------- | ---------- |
-| card-num      | Interger | null:false |
-| term-month    | Integer  | null:false |
-| term-year     | Integer  | null:false |
-| security-code | Integer  | null:false |
-| post-num      | Integer  | null:false |
-| prefecture    | String   | null:false |
-| city          | String   | null:false |
-| address       | String   | null:false |
-| building      | String   | null:false |
-| phone         | Integer  | null:false |
+| Column        | Type    | Option     |
+| ------------- | ------- | ---------- |
+| post_num      | String  | null:false |
+| prefecture_id | Integer | null:false |
+| city          | String  | null:false |
+| address       | String  | null:false |
+| building      | String  |            |
+| phone         | String  | null:false |
 
 ### Association
 belongs_to :items
+
+## item_record テーブル
+
+| Column  | Type       | Option           |
+| ------- | ---------- | ---------------- |
+| user_id | references | foreign_key:true |
+| item_id | references | foreign_key:true |
+
+### Association
+belongs_to :user
+belongs_to :item
