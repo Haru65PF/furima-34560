@@ -27,20 +27,20 @@ Things you may want to cover:
 
 ## Users テーブル
 
-| Column                | Type    | Option     |
-| --------------------- | ------- | ---------- |
-| nickname              | String  | null:false |
-| password              | String  | null:false |
-| password_confirmation | String  | null:false |
-| email                 | String  | null:false |
-| last_name             | String  | null:false |
-| first_name            | String  | null:false |
-| base_last_name        | String  | null:false |
-| base_first_name       | String  | null:false |
-| birth_date            | Integer | null:false |
+| Column             | Type   | Option                  |
+| ------------------ | ------ | ----------------------- |
+| nickname           | String | null:false              |
+| encrypted_password | String | null:false              |
+| email              | String | null:false, unique:true |
+| last_name          | String | null:false              |
+| first_name         | String | null:false              |
+| base_last_name     | String | null:false              |
+| base_first_name    | String | null:false              |
+| birth_date         | Date   | null:false              |
+
 ### Association
 has_many :items
-has_one :iem_record
+has_many :item_records
 
 ## items テーブル
 
@@ -58,10 +58,9 @@ has_one :iem_record
 
 ### Association
 belongs_to :user
-has_one :pay
 has_one :item_record
 
-## payテーブル
+## address テーブル
 | Column        | Type    | Option     |
 | ------------- | ------- | ---------- |
 | post_num      | String  | null:false |
@@ -72,15 +71,16 @@ has_one :item_record
 | phone         | String  | null:false |
 
 ### Association
-belongs_to :items
+belongs_to item_record
 
 ## item_record テーブル
 
 | Column  | Type       | Option           |
 | ------- | ---------- | ---------------- |
-| user_id | references | foreign_key:true |
-| item_id | references | foreign_key:true |
+| user    | references | foreign_key:true |
+| item    | references | foreign_key:true |
 
 ### Association
 belongs_to :user
 belongs_to :item
+has_one :address
