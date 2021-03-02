@@ -47,14 +47,14 @@ has_many :item_records
 | Column           | Type       | Option           |
 | ---------------- | ---------- | ---------------- |
 | name             | String     | null:false       |
-| info             | text       | null:false       |
+| info             | Text       | null:false       |
 | category_id      | Integer    | null:false       |
 | condition_id     | Integer    | null:false       |
 | delivery_pay_id  | Integer    | null:false       |
 | prefecture_id    | Integer    | null:false       |
 | delivery_date_id | Integer    | null:false       |
 | price            | Integer    | null:false       |
-| user             | references | foreign_key:true |
+| user             | References | foreign_key:true |
 
 ### Association
 belongs_to :user
@@ -69,17 +69,17 @@ has_one :item_record
 | address       | String     | null:false       |
 | building      | String     |                  |
 | phone         | String     | null:false       |
-| item_record   | references | foreign_key:true |
+| item_record   | References | foreign_key:true |
 
 ### Association
-belongs_to item_record
+belongs_to :item_record
 
 ## item_records テーブル
 
 | Column  | Type       | Option           |
 | ------- | ---------- | ---------------- |
-| user    | references | foreign_key:true |
-| item    | references | foreign_key:true |
+| user    | References | foreign_key:true |
+| item    | References | foreign_key:true |
 
 ### Association
 belongs_to :user
