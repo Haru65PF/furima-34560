@@ -37,7 +37,6 @@ RSpec.describe User, type: :model do
         another_user.email = @user.email
         another_user.valid?
         expect(another_user.errors.full_messages).to include('Email has already been taken')
-
       end
 
       it "emailのなかに＠が存在しない時は無効" do
@@ -56,6 +55,13 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it "passwordが5文字以下の時は無効" do
+        @user.password = 'aa000'
+        @user.password_confirmation = 'aa000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
 
       it "passwordが半角英字だけの時は無効" do
