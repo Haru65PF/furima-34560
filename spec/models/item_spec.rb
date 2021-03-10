@@ -5,7 +5,6 @@ RSpec.describe Item, type: :model do
   describe '商品登録' do
 
     before do
-      #binding.pry
       @item = FactoryBot.build(:item)
     end
 
@@ -15,7 +14,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格が300〜9,999,999以内であれば登録できる' do
-        @item.price = '1000'
+        @item.price = 1000
         expect(@item).to be_valid
       end
     end
@@ -81,13 +80,13 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが300以下の時は無効' do
-        @item.price = '10'
+        @item.price = 10
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
       it 'priceが999999以上の時は無効' do
-        @item.price = '100000000'
+        @item.price = 100000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
 
