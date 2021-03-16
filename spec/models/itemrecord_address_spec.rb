@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ItemrecordAddress, type: :model do
   describe '商品購入' do
-
     before do
       @itemrecord_address = FactoryBot.build(:itemrecord_address)
+      sleep(1)
     end
 
     context '商品購入できるとき' do
@@ -91,11 +91,17 @@ RSpec.describe ItemrecordAddress, type: :model do
 
       end
 
-      it 'phoneが11桁以上の時は無効' do
+      it 'phoneが12桁以上の時は無効' do
         @itemrecord_address.phone = '090000000000'
         @itemrecord_address.valid?
         expect(@itemrecord_address.errors.full_messages).to include("Phone is invalid")
 
+      end
+
+      it 'tokenが空の時は無効' do
+        @itemrecord_address.token = ''
+        @itemrecord_address.valid?
+        expect(@itemrecord_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
