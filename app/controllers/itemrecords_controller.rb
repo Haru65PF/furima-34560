@@ -1,7 +1,7 @@
 class ItemrecordsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
-  before_action
+  before_action :itemrecord_search, only: [:index, :create]
 
   def index
     @itemrecord_address = ItemrecordAddress.new
@@ -36,8 +36,8 @@ class ItemrecordsController < ApplicationController
     )
   end
 
-  def 
-    
+  def itemrecord_search
+    redirect_to root_path if current_user.id == @item.user_id || !@item.itemrecord.nil?
   end
 
 end
