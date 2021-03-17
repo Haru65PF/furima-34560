@@ -1,6 +1,6 @@
 class ItemrecordAddress
   include ActiveModel::Model
-  attr_accessor :post_num, :prefecture_id, :city, :address, :building, :phone, :itemrecord_id, :user_id, :item_id, :token
+  attr_accessor :post_num, :prefecture_id, :city, :address, :building, :phone, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :user_id

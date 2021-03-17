@@ -108,6 +108,18 @@ RSpec.describe ItemrecordAddress, type: :model do
         @itemrecord_address.valid?
         expect(@itemrecord_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'user_idが空の時は無効' do
+        @itemrecord_address.user_id = nil
+        @itemrecord_address.valid?
+        expect(@itemrecord_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空の時は無効' do
+        @itemrecord_address.item_id = nil
+        @itemrecord_address.valid?
+        expect(@itemrecord_address.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
