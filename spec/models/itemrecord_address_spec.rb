@@ -95,7 +95,12 @@ RSpec.describe ItemrecordAddress, type: :model do
         @itemrecord_address.phone = '090000000000'
         @itemrecord_address.valid?
         expect(@itemrecord_address.errors.full_messages).to include("Phone is invalid")
+      end
 
+      it 'phoneは英数混合の時は無効' do
+        @itemrecord_address.phone = '090abss0000'
+        @itemrecord_address.valid?
+        expect(@itemrecord_address.errors.full_messages).to include("Phone is invalid")
       end
 
       it 'tokenが空の時は無効' do
