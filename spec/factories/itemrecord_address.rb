@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :itemrecord_address do
-    user_id         {FactoryBot.create(:user)}
-    item_id         {FactoryBot.create(:item)}
+    user_id         {FactoryBot.create(:user).id}
+    item_id         {FactoryBot.create(:item).id}
     post_num        {'234-6789'}
     prefecture_id   {3}
     city            {'横浜市'}

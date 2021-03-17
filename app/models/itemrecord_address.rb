@@ -8,7 +8,7 @@ class ItemrecordAddress
     validates :post_num, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
     validates :city
     validates :address
-    validates :phone, format: {with: /\A[0-9]{11}\z/}
+    validates :phone, format: {with: /\A[0-9]{,11}\z/}
     validates :token
   end
 
