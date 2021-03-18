@@ -37,7 +37,7 @@ class ItemrecordsController < ApplicationController
   end
 
   def itemrecord_search
-    redirect_to root_path if current_user.id == @item.user_id || @item.itemrecord.nil?
+    redirect_to root_path if current_user.id == @item.user_id || !@item.itemrecord.nil?
   end
 
 end
